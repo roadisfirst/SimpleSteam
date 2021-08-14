@@ -14,4 +14,4 @@ deploy:
   provider: heroku
   app: simplesteam
   api_key:
-    secure: ""
+    secure: "dfe4039d-e1de-40fe-aa86-198f4b9c3a2a"
