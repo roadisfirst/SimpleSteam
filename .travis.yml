@@ -13,5 +13,5 @@ branches:
 deploy:
   provider: heroku
   app: simplesteam
-  api-key:
+  api_key:
     secure: ""
