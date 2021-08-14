@@ -3,15 +3,16 @@ node_js:
 - '10'
 
 before_install:
--npm install -g @angular/cli
+- npm install -g @angular/cli
 install: npm install
 
 branches:
   only:
-  -master
+  - master
+
 
 deploy:
   provider: heroku
-  app: simplesteam
+  app: <app_name_in_heroku>
   api_key:
-    secure:
+    secure: ""
