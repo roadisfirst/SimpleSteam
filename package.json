@@ -24,6 +24,7 @@
     "@angular/router": "~12.1.0",
     "@heroku-cli/plugin-buildpacks": "^7.54.0",
     "@heroku/buildpack-registry": "^1.0.1",
+    "async-file": "^2.0.2",
     "express": "^4.17.1",
     "heroku": "^7.56.1",
     "heroku-cli": "^7.0.9",
