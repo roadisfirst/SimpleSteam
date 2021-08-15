@@ -7,8 +7,6 @@ install: npm install
 branches:
   only:
   - master
-script:
-- echo "skipping tests"
 deploy:
   provider: heroku
   app: simplesteam
