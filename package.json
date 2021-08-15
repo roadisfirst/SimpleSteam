@@ -8,7 +8,6 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "postinstall": "ng build --aot --prod"
-
   },
   "private": true,
   "dependencies": {
@@ -23,8 +22,8 @@
     "express": "^4.17.1",
     "heroku": "^7.56.1",
     "heroku-cli": "^7.0.9",
+    "ruby": "^0.6.1",
     "rxjs": "~6.6.0",
-    "travis-cli": "^1.0.9",
     "tslib": "^2.2.0",
     "zone.js": "~0.11.4"
   },
