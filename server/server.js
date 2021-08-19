@@ -2,11 +2,11 @@ const express = require('express');
 const path = require('path');
 const app = express();
 
-app.use(express.static(__dirname + '/frontend/dist/simple-steam'));
+app.use(express.static(path.join(__dirname, '../client/dist/simple-steam')));
 
 app.get('/', (req, res) => {
   console.log('hooray!')
-  res.sendFile(path.join(__dirname + '/frontend/dist/simple-steam/index.html'));
+  res.sendFile(path.join(__dirname + '../client/dist/simple-steam/index.html'));
 });
 
 // app.get('/user/login', (req, res) => {

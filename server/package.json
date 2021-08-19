@@ -1,13 +1,16 @@
 {
   "name": "simple-steam-node",
   "version": "1.0.0",
+  "engines": {
+    "node": "14.17.1"
+  },
   "description": "node server",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon ./server.js localhost 3080",
     "start": "node server.js",
-    "postinstall": "./frontend ng build --aot --prod"
+    "postinstall": "../client ng build --aot --prod"
   },
   "repository": {
     "type": "git",
