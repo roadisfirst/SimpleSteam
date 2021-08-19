@@ -3,13 +3,9 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "node server.js",
-    "devNode": "nodemon ./server.js localhost 8080",
-    "devAng": "ng serve",
+    "start": "ng serve --proxy-config proxy.conf.json",
     "build": "ng build",
-    "lint": "ng lint",
-    "e2e": "ng e2e",
-    "postinstall": "ng build --aot --prod"
+    "lint": "ng lint"
   },
   "private": true,
   "dependencies": {
