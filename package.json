@@ -1,51 +1,35 @@
 {
-  "name": "simple-steam",
-  "version": "0.0.0",
-  "engines": {
-    "node": "14.17.1"
-  },
+  "name": "simple-steam-node",
+  "version": "1.0.0",
+  "description": "node server",
+  "main": "server.js",
   "scripts": {
-    "ng": "ng",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon ./server.js localhost 3080",
     "start": "node server.js",
-    "build": "ng build",
-    "lint": "ng lint",
-    "e2e": "ng e2e",
     "postinstall": "ng build --aot --prod"
   },
-  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/roadisfirst/SimpleSteam.git"
+  },
+  "author": "Tetiana Filatova",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/roadisfirst/SimpleSteam/issues"
+  },
+  "homepage": "https://github.com/roadisfirst/SimpleSteam#readme",
   "dependencies": {
-    "@angular/animations": "~12.1.0",
-    "@angular/common": "~12.1.0",
-    "@angular/compiler": "~12.1.0",
-    "@angular/core": "~12.1.0",
-    "@angular/forms": "~12.1.0",
-    "@angular/platform-browser": "~12.1.0",
-    "@angular/platform-browser-dynamic": "~12.1.0",
-    "@angular/router": "~12.1.0",
+    "express": "^4.17.1",
     "@heroku-cli/plugin-buildpacks": "^7.54.0",
     "@heroku/buildpack-registry": "^1.0.1",
     "async-file": "^2.0.2",
-    "express": "^4.17.1",
     "heroku": "^7.56.1",
     "heroku-cli": "^7.0.9",
     "phoenix": "^1.5.10",
-    "rxjs": "~6.6.0",
-    "tslib": "^2.2.0",
-    "valid-url": "^1.0.9",
-    "zone.js": "~0.11.4"
+    "valid-url": "^1.0.9"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~12.1.4",
-    "@angular/cli": "~12.1.4",
-    "@angular/compiler-cli": "~12.1.0",
-    "@types/jasmine": "~3.8.0",
-    "@types/node": "^12.11.1",
-    "jasmine-core": "~3.8.0",
-    "karma": "~6.3.0",
-    "karma-chrome-launcher": "~3.1.0",
-    "karma-coverage": "~2.0.3",
-    "karma-jasmine": "~4.0.0",
-    "karma-jasmine-html-reporter": "~1.7.0",
-    "typescript": "~4.3.2"
+    "nodemon": "^2.0.12"
   }
 }
