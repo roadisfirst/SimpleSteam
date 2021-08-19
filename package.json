@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon ./server.js localhost 3080",
     "start": "node server.js",
-    "postinstall": "./fontend ng build --aot --prod"
+    "postinstall": "./frontend ng build --aot --prod"
   },
   "repository": {
     "type": "git",
