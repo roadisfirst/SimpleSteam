@@ -9,17 +9,18 @@ import { TokenStorageService } from 'src/app/features/steam/services/token-stora
 })
 export class NavbarComponent implements OnInit {
   logoSrc = 'assets/images/logo.png';
-  isLoggedIn = true;
-  // constructor(
-  //   private tokenStorage: TokenStorageService
-  // ) {
-  // }
+  public isLoggedIn = false;
+  constructor(
+    private tokenStorage: TokenStorageService
+  ) {
+  }
 
   ngOnInit(): void {
-    // this.tokenStorage.getUser().subscribe(
-    //   (user: User) => {
-    //     this.isLoggedIn = true;
-    //   });
+    this.isLoggedIn = !!this.tokenStorage.getToken();
+    // const user = this.tokenStorage.getUser();
+    // if(user){
+    //   this.isLoggedIn = true;
+    // }
   }
 
 }

@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 
-const ROOT_API = '/api';
+const ROOT_API = '/api/auth';
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
@@ -16,7 +16,7 @@ export class AuthService {
   constructor(private http: HttpClient) { }
 
   login(email: string, password: string): Observable<any> {
-    return this.http.post(ROOT_API + '/user/login', {
+    return this.http.post(ROOT_API + '/login', {
       email,
       password
     }, httpOptions);

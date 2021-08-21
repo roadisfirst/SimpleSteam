@@ -17,11 +17,11 @@ export class LoginComponent implements OnInit {
 
   public ngOnInit(): void {
     if (this.tokenStorage.getToken()) {
-    //if (true) {
       this.isLoggedIn = true;
     } else {
-      this.initForm();
+      // this.initForm();
     }
+    this.initForm();
   }
 
   private initForm() {
@@ -43,13 +43,15 @@ export class LoginComponent implements OnInit {
     const { email, password } = this.loginForm.value;
     this.authService.login(email, password).subscribe(
       data => {
-        this.tokenStorage.saveToken(data.accessToken);
+        console.log(data);
+        this.tokenStorage.saveToken(data.jwt_token);
         this.tokenStorage.saveUser(data);
         this.isLoginFailed = false;
         this.isLoggedIn = true;
         this.reloadPage();
       },
       err => {
+        console.log(err);
         this.errorMessage = err.error.message;
         this.isLoginFailed = true;
       }

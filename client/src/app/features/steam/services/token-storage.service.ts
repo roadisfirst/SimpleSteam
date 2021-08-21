@@ -10,6 +10,11 @@ export class TokenStorageService {
 
   constructor() { }
 
+  isAuthenticated(): boolean {
+    console.log('isAuth', !!this.getToken())
+    return !!this.getToken();
+  }
+  
   signOut(): void {
     window.sessionStorage.clear();
   }
