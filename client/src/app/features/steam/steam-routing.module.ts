@@ -6,6 +6,8 @@ import { GamesComponent } from './pages/games/games.component';
 import { LibraryComponent } from './pages/library/library.component';
 import { LoginComponent } from './pages/login/login.component';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { UserProfileResolver } from './resolvers/user-profile.resolver';
+
 
 const routes: Routes = [
   {
@@ -34,6 +36,9 @@ const routes: Routes = [
   {
     path: 'profile',
     component: ProfileComponent,
+    resolve: {
+      profile: UserProfileResolver
+    },
     pathMatch: 'full',
     canActivate: [AuthGuard]
   },

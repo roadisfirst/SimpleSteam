@@ -8,10 +8,7 @@ const USER_KEY = 'auth-user';
 })
 export class TokenStorageService {
 
-  constructor() { }
-
   isAuthenticated(): boolean {
-    console.log('isAuth', !!this.getToken())
     return !!this.getToken();
   }
   

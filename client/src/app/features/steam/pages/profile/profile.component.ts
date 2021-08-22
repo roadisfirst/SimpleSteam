@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { User } from '../../models';
 import { ProfileService } from '../../services/profile.service';
-import { TokenStorageService } from '../../services/token-storage.service';
 
 @Component({
   selector: 'steam-profile',
@@ -11,40 +10,51 @@ import { TokenStorageService } from '../../services/token-storage.service';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-  public currentUser: User | undefined;
+  // public currentUser: any = {};
   public profileForm: FormGroup;
+  public user: User = {
+    username: '',
+    email: '',
+    age: 0
+  };
   public constructor(
-    private tokenStorage: TokenStorageService,
     private profileService: ProfileService,
-    private readonly activatedRoute: ActivatedRoute
+    private readonly activatedRoute: ActivatedRoute,
     ) { }
 
   public ngOnInit(): void {
-    this.currentUser = this.tokenStorage.getUser();
+    this.user = this.activatedRoute.snapshot.data.profile.user;
+    console.log(this.user);
+    // this.currentUser = this.profileService.getUserDetails().subscribe(
+    //   data => {
+    //     console.log(data);
+    //     // this.profileForm.setValue({
+    //     //   username: data.username,
+    //     //   email: data.email,
+    //     //   age: data.age
+    //     // });
+    //   })
+    // console.log(this.currentUser);
     this.initForm();
-    //this.currentUser = this.authService.getUserDetails();
-    // this.profileForm.setValue({
-    //   username: this.userDetails.username,
-    //   email: this.userDetails.email,
-    //   age: this.userDetails.age
-    // });
   }
 
-  public submit() {
+  public submit(): void {
     console.log(this.profileForm.value);
+    const {username, email, age} = this.profileForm.value;
+    this.profileService.updateUserDetails(username, email, age).subscribe();
   }
 
   private initForm() {
     const agePattern = /^(?!0)\d{1,2}$/;
     this.profileForm = new FormGroup({
-      username: new FormControl(null, [
+      username: new FormControl(this.user.username, [
         Validators.required,
       ]),
-      email: new FormControl(null, [
+      email: new FormControl(this.user.email, [
         Validators.required,
         Validators.email,
       ]),
-      age: new FormControl(null, [
+      age: new FormControl(this.user.age, [
         Validators.required,
         Validators.pattern(agePattern),
       ]),

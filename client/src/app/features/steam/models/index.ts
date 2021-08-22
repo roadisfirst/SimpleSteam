@@ -1,8 +1,13 @@
 export interface User {
   email: string;
   username: string;
-  password: string;
+  password?: string;
   age: number;
+}
+
+export interface LoginRes {
+  password: string;
+  jwt_token: string;
 }
 
 export interface Game {
