@@ -34,6 +34,10 @@ app.use((err, req, res, next) => {
   res.status(500).json({message: err.message});
 });
 
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname + '/client/dist/simple-steam/index.html'));
+});
+
 const start = async () => {
   try {
     await mongoose.connect('mongodb+srv://user1:useruser@cluster0.7t0pq.mongodb.net/steam?retryWrites=true&w=majority', {
