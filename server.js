@@ -15,7 +15,7 @@ app.use(express.json());
 app.use(morgan('tiny'));
 app.use(express.static(path.join(__dirname, '/client/dist/simple-steam')));
 
-app.get('*', (req, res) => {
+app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname + '/client/dist/simple-steam/index.html'));
 });
 
@@ -33,10 +33,6 @@ app.use((err, req, res, next) => {
   }
   res.status(500).json({message: err.message});
 });
-
-// app.get('*', (req, res) => {
-//   res.sendFile(path.join(__dirname + '/client/dist/simple-steam/index.html'));
-// });
 
 const start = async () => {
   try {
