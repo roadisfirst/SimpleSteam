@@ -13,13 +13,25 @@ const {
   asyncWrapper,
 } = require('../utils/apiUtils');
 
-router.get('/', asyncWrapper(async (req, res) => {
-  const {userId} = req.user;
-  console.log('here')
-  const games = await getGames(userId);
-  if (!games) {
-    throw new InvalidRequestError();
-  }
+router.post('/register', registrationValidator,
+    asyncWrapper(async (req, res) => {
+      const {
+        email,
+        password,
+      } = req.body;
+
+      await registration({email, password});
+
+      res.json({message: 'Profile created successfully'});
+    }));
+    
+// router.get('/', asyncWrapper(async (req, res) => {
+//   const {userId} = req.user;
+//   console.log('here')
+//   const games = await getGames(userId);
+//   if (!games) {
+//     throw new InvalidRequestError();
+//   }
 
   res.json({games});
 }));
