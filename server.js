@@ -15,7 +15,7 @@ app.use(express.json());
 app.use(morgan('tiny'));
 app.use(express.static(path.join(__dirname, '/client/dist/simple-steam')));
 
-app.get('/', (req, res) => {
+app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname + '/client/dist/simple-steam/index.html'));
 });
 
@@ -23,7 +23,6 @@ app.use('/api/auth', authRouter);
 app.use('/api/users/profile', [authMiddleware], profileRouter);
 app.use('/api/games', [authMiddleware], gamesRouter);
 
-//app.listen(process.env.PORT || 3080);
 app.use((req, res, next) => {
   throw new InvalidPathError('Not found');
 });
