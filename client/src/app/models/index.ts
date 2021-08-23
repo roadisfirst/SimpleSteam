@@ -5,7 +5,7 @@ export interface User {
   age: number;
 }
 
-export interface LoginRes {
+export interface LoginResponse {
   password: string;
   jwt_token: string;
 }
@@ -15,5 +15,5 @@ export interface Game {
   name: string;
   description: string;
   price: string;
-  tag: string[];
+  tags: string[];
 }

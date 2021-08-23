@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from 'src/app/features/steam/models';
-import { TokenStorageService } from 'src/app/features/steam/services/token-storage.service';
+import { User } from 'src/app/models';
+import { TokenStorageService } from 'src/app/core/services/token-storage.service';
 
 @Component({
   selector: 'app-navbar',

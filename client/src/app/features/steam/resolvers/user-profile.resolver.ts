@@ -5,8 +5,8 @@ import {
   ActivatedRouteSnapshot
 } from '@angular/router';
 import { Observable } from 'rxjs';
-import { User } from '../models';
-import { ProfileService } from '../services/profile.service';
+import { User } from '../../../models';
+import { ProfileService } from '../../../core/services/profile.service';
 
 @Injectable({
   providedIn: 'root'

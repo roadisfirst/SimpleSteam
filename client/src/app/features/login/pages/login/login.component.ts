@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from '../../services/auth.service';
-import { TokenStorageService } from '../../services/token-storage.service';
+import { AuthService } from '../../../../core/services/auth.service';
+import { TokenStorageService } from '../../../../core/services/token-storage.service';
 
 @Component({
   selector: 'steam-login',
@@ -23,8 +23,7 @@ export class LoginComponent implements OnInit {
   public ngOnInit(): void {
     if (this.tokenStorage.getToken()) {
       this.isLoggedIn = true;
-    } else {
-      // this.initForm();
+      this.redirect();
     }
     this.initForm();
   }
@@ -54,7 +53,6 @@ export class LoginComponent implements OnInit {
         this.isLoginFailed = false;
         this.isLoggedIn = true;
         this.reloadPage();
-        this.redirect();
       },
       err => {
         console.log(err);

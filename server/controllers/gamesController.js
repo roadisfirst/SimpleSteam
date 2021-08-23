@@ -15,13 +15,12 @@ const {
 
 router.get('/', asyncWrapper(async (req, res) => {
   const {userId} = req.user;
-  console.log('here')
   const games = await getGames(userId);
   if (!games) {
     throw new InvalidRequestError();
   }
 
-  res.json({games});
+  res.json(games);
 }));
 
 module.exports = {

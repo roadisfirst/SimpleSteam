@@ -7,7 +7,7 @@ import {
   HTTP_INTERCEPTORS
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { TokenStorageService } from '../features/steam/services/token-storage.service';
+import { TokenStorageService } from '../core/services/token-storage.service';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {

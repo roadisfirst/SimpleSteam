@@ -8,6 +8,8 @@ import { SteamModule } from './features/steam/steam.module';
 import { SharedModule } from './shared/shared.module';
 import { authInterceptorProviders } from './helpers/auth.interceptor';
 import { headerInterceptorProviders } from './helpers/header.interceptor';
+import { LoginModule } from './features/login/login.module';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -19,6 +21,8 @@ import { headerInterceptorProviders } from './helpers/header.interceptor';
     SteamModule,
     SharedModule,
     HttpClientModule,
+    LoginModule,
+    FormsModule,
   ],
   providers: [
     authInterceptorProviders,

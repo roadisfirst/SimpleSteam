@@ -1,14 +1,16 @@
 <div>
+  <h2>Games</h2>
+  <div class="">
+    <input type="text" class="" placeholder="Search Games" [(ngModel)] = searchGame>
+  </div>
   <h2>Featured games</h2>
   <ng-container *ngIf="games$ | async as games">
-    <!-- <div *ngIf="games.length > 0"> -->
-    <div *ngFor="let game of games">
+    <div *ngFor="let game of games | searchFilter: searchGame">
       <h3>{{game.name}}</h3>
       <p>{{game.price}}</p>
       <p>{{game.description}}</p>
-      <p>{{game.tag}}</p>
+      <p>{{game.tags}}</p>
     </div>
-  <!-- </div> -->
   </ng-container>
 </div>
 

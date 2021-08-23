@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { User } from '../../models';
-import { ProfileService } from '../../services/profile.service';
+import { User } from '../../../../models';
+import { ProfileService } from '../../../../core/services/profile.service';
 
 @Component({
   selector: 'steam-profile',
