@@ -13,7 +13,6 @@ const {
   asyncWrapper,
 } = require('../utils/apiUtils');
 
-
 router.get('/', asyncWrapper(async (req, res) => {
   const {userId} = req.user;
   console.log('here')

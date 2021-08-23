@@ -7,6 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { SteamModule } from './features/steam/steam.module';
 import { SharedModule } from './shared/shared.module';
 import { authInterceptorProviders } from './helpers/auth.interceptor';
+import { headerInterceptorProviders } from './helpers/header.interceptor';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { authInterceptorProviders } from './helpers/auth.interceptor';
   ],
   providers: [
     authInterceptorProviders,
+    headerInterceptorProviders,
   ],
   bootstrap: [AppComponent]
 })

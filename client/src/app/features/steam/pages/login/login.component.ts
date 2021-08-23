@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { TokenStorageService } from '../../services/token-storage.service';
 
@@ -13,7 +14,11 @@ export class LoginComponent implements OnInit {
   public isLoggedIn = false;
   public isLoginFailed = false;
   public errorMessage = '';
-  public constructor(private authService: AuthService, private tokenStorage: TokenStorageService) { }
+  public constructor(
+    private authService: AuthService,
+    private tokenStorage: TokenStorageService,
+    private router: Router
+    ) { }
 
   public ngOnInit(): void {
     if (this.tokenStorage.getToken()) {
@@ -49,6 +54,7 @@ export class LoginComponent implements OnInit {
         this.isLoginFailed = false;
         this.isLoggedIn = true;
         this.reloadPage();
+        this.redirect();
       },
       err => {
         console.log(err);
@@ -60,6 +66,10 @@ export class LoginComponent implements OnInit {
 
   private reloadPage(): void {
     window.location.reload();
+  }
+
+  private redirect(): void {
+    this.router.navigate(['/games']);
   }
 
 }

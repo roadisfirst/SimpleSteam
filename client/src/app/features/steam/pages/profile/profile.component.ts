@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { User } from '../../models';
 import { ProfileService } from '../../services/profile.service';
 
@@ -10,13 +10,8 @@ import { ProfileService } from '../../services/profile.service';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-  // public currentUser: any = {};
   public profileForm: FormGroup;
-  public user: User = {
-    username: '',
-    email: '',
-    age: 0
-  };
+  public user: User;
   public constructor(
     private profileService: ProfileService,
     private readonly activatedRoute: ActivatedRoute,
@@ -25,16 +20,10 @@ export class ProfileComponent implements OnInit {
   public ngOnInit(): void {
     this.user = this.activatedRoute.snapshot.data.profile.user;
     console.log(this.user);
-    // this.currentUser = this.profileService.getUserDetails().subscribe(
+    // this.profileService.getUserDetails().subscribe(
     //   data => {
     //     console.log(data);
-    //     // this.profileForm.setValue({
-    //     //   username: data.username,
-    //     //   email: data.email,
-    //     //   age: data.age
-    //     // });
     //   })
-    // console.log(this.currentUser);
     this.initForm();
   }
 
@@ -60,5 +49,4 @@ export class ProfileComponent implements OnInit {
       ]),
     });
   }
-
 }

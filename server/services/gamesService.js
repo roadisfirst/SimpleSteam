@@ -1,7 +1,7 @@
 const {Game} = require('../models/gameModel');
 
 const getGames = async (userId) => {
-  const games = await Game.find({deleted: false}, '-__v ');
+  const games = await Game.find({}, '-__v ');
   return games;
 };
 
