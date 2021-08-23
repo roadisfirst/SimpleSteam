@@ -20,6 +20,10 @@ app.use('/api/auth', authRouter);
 app.use('/api/users/profile', [authMiddleware], profileRouter);
 app.use('/api/games', [authMiddleware], gamesRouter);
 
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname + '/client/dist/simple-steam/index.html'));
+});
+
 app.use((req, res, next) => {
   throw new InvalidPathError('Not found!!!');
 });
@@ -29,10 +33,6 @@ app.use((err, req, res, next) => {
     return res.status(err.status).json({message: err.message});
   }
   res.status(500).json({message: err.message});
-});
-
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname + '/client/dist/simple-steam/index.html'));
 });
 
 const start = async () => {
