@@ -5,11 +5,12 @@
   </div>
   <h2>Featured games</h2>
   <ng-container *ngIf="games$ | async as games">
-    <div *ngFor="let game of games | searchFilter: searchGame">
+    <div *ngFor="let game of games | searchFilter: searchGame : getName">
       <h3>{{game.name}}</h3>
       <p>{{game.price}}</p>
       <p>{{game.description}}</p>
       <p>{{game.tags}}</p>
+      <button>Add to Library</button>
     </div>
   </ng-container>
 </div>

@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 })
 export class GamesComponent implements OnInit {
   public games$: Observable<Game[]>;
-  public searchGame: any = '';
+  public searchGame: string;
   constructor(
     private readonly gamesService: GamesService
   ) { }
@@ -18,4 +18,6 @@ export class GamesComponent implements OnInit {
   public ngOnInit(): void {
     this.games$ = this.gamesService.fetch();
   }
+
+  public getName : (game: Game) => string = (game) => game.name;
 }
