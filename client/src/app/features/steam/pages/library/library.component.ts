@@ -25,7 +25,7 @@ export class LibraryComponent implements OnInit {
   }
 
   public share(id: string): void {
-    const link = this.router.url + '/' + id;
+    const link = this.router['location']._platformLocation.location.origin + '/games/' + id;
     window.alert(`You can share the link ${link}`);
   }
 }
