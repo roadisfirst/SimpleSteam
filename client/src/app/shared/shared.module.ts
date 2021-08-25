@@ -4,9 +4,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { RouterModule } from '@angular/router';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { SearchFilterPipe } from './pipes/search-filter.pipe';
-import { SearchbarComponent } from './components/searchbar/searchbar.component';
 
-const PUBLIC_COMPONENTS = [NavbarComponent, PageNotFoundComponent, SearchbarComponent];
+const PUBLIC_COMPONENTS = [NavbarComponent, PageNotFoundComponent];
 const PUBLIC_DIRECTIVES: never[] = [];
 const PUBLIC_PIPES= [SearchFilterPipe];
 
