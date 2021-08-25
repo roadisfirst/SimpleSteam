@@ -3,6 +3,7 @@ export interface User {
   username: string;
   password?: string;
   age: number;
+  games?: string[];
 }
 
 export interface LoginResponse {
@@ -11,9 +12,13 @@ export interface LoginResponse {
 }
 
 export interface Game {
-  id: number;
+  _id: string;
   name: string;
   description: string;
   price: string;
   tags: string[];
+}
+
+export interface Message {
+  message: string;
 }

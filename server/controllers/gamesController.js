@@ -3,7 +3,12 @@ const router = new express.Router();
 
 const {
   getGames,
+  getGamesByUserLibraryArray,
 } = require('../services/gamesService');
+
+const {
+  getLibraryArrayByUserId,
+} = require('../services/usersService');
 
 const {
   InvalidRequestError,
@@ -21,6 +26,16 @@ router.get('/', asyncWrapper(async (req, res) => {
   }
 
   res.json(games);
+}));
+
+router.get('/library', asyncWrapper(async (req, res) => {
+  const {userId} = req.user;
+  const gameArr = await getLibraryArrayByUserId(userId);
+  const gamesLibrary = await getGamesByUserLibraryArray(gameArr);
+  if (!gamesLibrary) {
+    throw new InvalidRequestError();
+  }
+  res.json(gamesLibrary);
 }));
 
 module.exports = {

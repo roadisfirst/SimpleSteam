@@ -6,9 +6,9 @@ const mongoose = require('mongoose');
 const {SteamApiError, InvalidPathError} = require('./server/utils/errors');
 
 const port = process.env.PORT || 8080;
-// const {notesRouter} = require('./server/controllers/notesController');
 const {authRouter} = require('./server/controllers/authController');
 const {profileRouter} = require('./server/controllers/profileController');
+const {usersRouter} = require('./server/controllers/usersController');
 const {gamesRouter} = require('./server/controllers/gamesController');
 const {authMiddleware} = require('./server/middlewares/authMiddleware');
 
@@ -17,6 +17,7 @@ app.use(morgan('tiny'));
 app.use(express.static(path.join(__dirname, '/client/dist/simple-steam')));
 
 app.use('/api/auth', authRouter);
+app.use('/api/users', [authMiddleware], usersRouter);
 app.use('/api/users/profile', [authMiddleware], profileRouter);
 app.use('/api/games', [authMiddleware], gamesRouter);
 

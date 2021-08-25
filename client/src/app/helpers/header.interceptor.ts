@@ -12,12 +12,12 @@ import { Observable } from 'rxjs';
 export class HeaderInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    let headerReq = request;
-    headerReq = request.clone({
-      setHeaders: {
-        'Content-Type': 'application/json'
-      }
-    })
+    const headerReq = request;
+    // headerReq = request.clone({
+    //   setHeaders: {
+    //     'Content-Type': 'application/json'
+    //   }
+    // })
     return next.handle(headerReq);
   }
 }

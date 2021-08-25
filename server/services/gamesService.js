@@ -5,13 +5,13 @@ const getGames = async (userId) => {
   return games;
 };
 
-// const getGamesByUserId = async (userId) => {
-//   const games = await Game.find({created_by, deleted: false},
-//       '-__v -deleted');
-//   return games;
-// };
+const getGamesByUserLibraryArray = async (libraryIds) => {
+  const gamesFromLibrary = await Game.find({ '_id': { $in: libraryIds } },
+      '-__v');
+  return gamesFromLibrary;
+};
 
 module.exports = {
   getGames,
-  // getGamesByUserId,
+  getGamesByUserLibraryArray,
 };

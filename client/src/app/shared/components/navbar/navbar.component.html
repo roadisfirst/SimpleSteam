@@ -1,8 +1,8 @@
-<header class="header">
+<header class="header" *ngIf="isLoggedIn">
   <a href="#" class="header-logo-link">
     <img class="header-logo" [src]="logoSrc">
   </a>
-  <nav class="navigation" *ngIf="isLoggedIn">
+  <nav class="navigation">
     <ul class="navbar">
       <li class="nav-item">
         <a class="nav-link" routerLink="/games" routerLinkActive="active">Games</a>

@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from 'src/app/models';
 import { TokenStorageService } from 'src/app/core/services/token-storage.service';
 
 @Component({
-  selector: 'app-navbar',
+  selector: 'steam-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss']
 })
@@ -15,12 +14,8 @@ export class NavbarComponent implements OnInit {
   ) {
   }
 
-  ngOnInit(): void {
-    this.isLoggedIn = !!this.tokenStorage.getToken();
-    // const user = this.tokenStorage.getUser();
-    // if(user){
-    //   this.isLoggedIn = true;
-    // }
+  public ngOnInit(): void {
+    this.isLoggedIn = this.tokenStorage.isAuthenticated();
   }
 
 }

@@ -8,6 +8,7 @@ import { GamesComponent } from './pages/games/games.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { LibraryComponent } from './pages/library/library.component';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { GameItemComponent } from './pages/games/game-item/game-item.component';
 
 
 @NgModule({
@@ -16,6 +17,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
     GamesComponent,
     ProfileComponent,
     LibraryComponent,
+    GameItemComponent,
   ],
   imports: [
     CommonModule,

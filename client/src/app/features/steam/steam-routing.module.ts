@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { FriendsComponent } from './pages/friends/friends.component';
+import { GameItemComponent } from './pages/games/game-item/game-item.component';
 import { GamesComponent } from './pages/games/games.component';
 import { LibraryComponent } from './pages/library/library.component';
 import { ProfileComponent } from './pages/profile/profile.component';
@@ -17,6 +18,10 @@ const routes: Routes = [
     path: 'games',
     component: GamesComponent,
     pathMatch: 'full',
+  },
+  {
+    path: 'games/:id',
+    component: GameItemComponent,
   },
   {
     path: 'library',

@@ -12,7 +12,11 @@ export class GamesService {
 
   constructor(private http: HttpClient) { }
 
-  fetch(): Observable<Game[]> {
+  public fetch(): Observable<Game[]> {
     return this.http.get<Game[]>(ROOT_API);
+  }
+
+  public showGamesFromLibrary(): Observable<Game[]> {
+    return this.http.get<Game[]>(ROOT_API + '/library');
   }
 }
