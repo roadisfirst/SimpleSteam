@@ -13,6 +13,9 @@ export class GamesComponent implements OnInit {
   public games$: Observable<Game[]>;
   public searchGame: string;
   public library: string[] = [];
+  public minPrice = 0;
+  public maxPrice: number;
+  public maxVal = 0;
   constructor(
     private readonly gamesService: GamesService,
     private readonly libraryService: LibraryService
@@ -21,9 +24,13 @@ export class GamesComponent implements OnInit {
   public ngOnInit(): void {
     this.games$ = this.gamesService.fetch();
     this.loadLibrary();
+    this.setMaxPrice();
+    this.maxVal = this.maxPrice;
   }
 
   public getName: (game: Game) => string = (game) => game.name;
+
+  public getPrice: (game: Game) => string = (game) => game.price;
 
   public addToLibrary(gameId: string): void {
     this.libraryService.addGameToUserLibrary(gameId).subscribe(
@@ -59,5 +66,12 @@ export class GamesComponent implements OnInit {
 
   public isGameInLibrary(id: string): boolean {
     return this.library.includes(id);
+  }
+
+  public setMaxPrice(): void {
+    this.games$.subscribe(data => {
+      const priceArr = data.map(elem => Number(elem.price));
+      this.maxPrice = Math.max(...priceArr);
+    });
   }
 }

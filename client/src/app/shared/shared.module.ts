@@ -4,10 +4,11 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { RouterModule } from '@angular/router';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { SearchFilterPipe } from './pipes/search-filter.pipe';
+import { PriceRangePipe } from './pipes/price-range.pipe';
 
 const PUBLIC_COMPONENTS = [NavbarComponent, PageNotFoundComponent];
 const PUBLIC_DIRECTIVES: never[] = [];
-const PUBLIC_PIPES= [SearchFilterPipe];
+const PUBLIC_PIPES= [SearchFilterPipe, PriceRangePipe];
 
 @NgModule({
   declarations: [
