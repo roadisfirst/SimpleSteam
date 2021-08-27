@@ -2,9 +2,11 @@ const express = require('express');
 const router = new express.Router();
 
 const {
+  getAllUsers,
   getLibraryArrayByUserId,
   addGameByIdToUserLibrary,
   removeGameByIdFromUserLibrary,
+  removeFriendship,
 } = require('../services/usersService');
 
 const {
@@ -36,6 +38,21 @@ router.patch('/library/remove/:id', asyncWrapper(async (req, res) => {
   await removeGameByIdFromUserLibrary(userId, id);
 
   res.json({message: 'Game removed from your library'});
+}));
+
+router.get('/', asyncWrapper(async (req, res) => {
+  const users = await getAllUsers();
+
+  res.json(users);
+}));
+
+router.patch('/unfriend/:id', asyncWrapper(async (req, res) => {
+  const {userId} = req.user;
+  const {id} = req.params;
+
+  await removeFriendship(userId, id);
+
+  res.json({message: 'User was deleted from your friends'});
 }));
 
 module.exports = {

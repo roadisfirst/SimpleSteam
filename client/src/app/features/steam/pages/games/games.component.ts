@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GamesService } from '../../../../core/services/games.service';
-import { Game } from '../../../../models';
+import { Game, Tag } from '../../../../models';
 import { Observable } from 'rxjs';
 import { LibraryService } from 'src/app/core/services/library.service';
 
@@ -11,18 +11,22 @@ import { LibraryService } from 'src/app/core/services/library.service';
 })
 export class GamesComponent implements OnInit {
   public games$: Observable<Game[]>;
+  public tags$: Observable<Tag[]>;
+  public selectedTagsArray: string[] = [];
   public searchGame: string;
   public library: string[] = [];
   public minPrice = 0;
   public maxPrice: number;
   public maxVal = 0;
+  public triggerTagChanges: boolean | undefined;
   constructor(
     private readonly gamesService: GamesService,
     private readonly libraryService: LibraryService
   ) { }
 
   public ngOnInit(): void {
-    this.games$ = this.gamesService.fetch();
+    this.games$ = this.gamesService.fetchGames();
+    this.tags$ = this.gamesService.fetchGameTags();
     this.loadLibrary();
     this.setMaxPrice();
     this.maxVal = this.maxPrice;
@@ -31,6 +35,8 @@ export class GamesComponent implements OnInit {
   public getName: (game: Game) => string = (game) => game.name;
 
   public getPrice: (game: Game) => string = (game) => game.price;
+
+  public getTagsArray: (game: Game) => string[] = (game) => game.tags;
 
   public addToLibrary(gameId: string): void {
     this.libraryService.addGameToUserLibrary(gameId).subscribe(
@@ -61,7 +67,6 @@ export class GamesComponent implements OnInit {
       this.library = gameIds;
       console.log(this.library);
     });
-    
   }
 
   public isGameInLibrary(id: string): boolean {
@@ -73,5 +78,14 @@ export class GamesComponent implements OnInit {
       const priceArr = data.map(elem => Number(elem.price));
       this.maxPrice = Math.max(...priceArr);
     });
+  }
+
+  public updateTagArray(item: Tag): void {
+    if(item.selected === false){
+      this.selectedTagsArray.splice(this.selectedTagsArray.indexOf(item.name), 1);
+    } else {
+        this.selectedTagsArray.push(item.name);
+      }
+    console.log('in tag array:', this.selectedTagsArray);
   }
 }

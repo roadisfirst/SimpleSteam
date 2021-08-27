@@ -1,18 +1,29 @@
 <div class="content">
   <h2>Games</h2>
   <div class="">
-    <input type="text" class="" placeholder="Search Games" [(ngModel)] = searchGame>
+    <input type="text" class="" placeholder="Search Games" [(ngModel)]=searchGame>
   </div>
   <div class="games-filters">
     <label class="filter-label" for="pricerange">Filter by price</label>
     <input type="range" min={{minPrice}} max={{maxPrice}} step="1" [(ngModel)]="maxVal" id="pricerange"> {{maxVal}}
+    <div class="filter-label" for="tag-filter">Filter by tag</div>
+    <div class="tags-container" *ngIf="tags$ | async as tags">
+      <div class="tag-item" *ngFor="let tag of tags; let index=index">
+        <input type="checkbox" value={{tag.name}} id={{tag.name}}
+          (change)="updateTagArray(tag); triggerTagChanges=!tag.selected" [(ngModel)]="tag.selected">
+        <label class="checkbox-label" for={{tag.name}}>{{tag.name}}</label>
+      </div>
+    </div>
   </div>
   
   <h2>Featured games</h2>
   <div class="games-container" *ngIf="games$ | async as games">
-    <div class="game-item" *ngFor="let game of games | priceRange: minPrice : maxVal : getPrice | searchFilter: searchGame : getName">
+    <div class="game-item" *ngFor="let game of games 
+      | priceRange: minPrice : maxVal : getPrice
+      | tagFilter: triggerTagChanges: selectedTagsArray : getTagsArray
+      | searchFilter: searchGame : getName">
       <h3>{{game.name}}</h3>
-      <p>{{game.price}}</p>
+      <p>{{game.price | currency:'UAH'}}</p>
       <p>{{game.description}}</p>
       <p>{{game.tags}}</p>
       <ng-container *ngIf="!isGameInLibrary(game._id)">

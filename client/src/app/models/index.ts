@@ -22,3 +22,8 @@ export interface Game {
 export interface Message {
   message: string;
 }
+
+export interface Tag {
+  name: string;
+  selected?: boolean;
+}

@@ -11,6 +11,10 @@ const {
 } = require('../services/usersService');
 
 const {
+  getTags,
+} = require('../services/tagsService');
+
+const {
   InvalidRequestError,
 } = require('../utils/errors');
 
@@ -36,6 +40,15 @@ router.get('/library', asyncWrapper(async (req, res) => {
     throw new InvalidRequestError();
   }
   res.json(gamesLibrary);
+}));
+
+router.get('/tags', asyncWrapper(async (req, res) => {
+  const {userId} = req.user;
+  const tags = await getTags(userId);
+  if (!tags) {
+    throw new InvalidRequestError();
+  }
+  res.json(tags);
 }));
 
 module.exports = {

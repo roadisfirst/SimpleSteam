@@ -16,7 +16,8 @@ const User = mongoose.model('User', {
   age: {
     type: Number,
   },
-  games:[],
+  games: [],
+  friends: [],
   deleted: {
     type: Boolean,
     default: false,

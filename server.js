@@ -10,6 +10,7 @@ const {authRouter} = require('./server/controllers/authController');
 const {profileRouter} = require('./server/controllers/profileController');
 const {usersRouter} = require('./server/controllers/usersController');
 const {gamesRouter} = require('./server/controllers/gamesController');
+const {friendRelationsRouter} = require('./server/controllers/friendRelationsController');
 const {authMiddleware} = require('./server/middlewares/authMiddleware');
 
 app.use(express.json());
@@ -20,6 +21,7 @@ app.use('/api/auth', authRouter);
 app.use('/api/users', [authMiddleware], usersRouter);
 app.use('/api/users/profile', [authMiddleware], profileRouter);
 app.use('/api/games', [authMiddleware], gamesRouter);
+app.use('/api/friendRelations', [authMiddleware], friendRelationsRouter);
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname + '/client/dist/simple-steam/index.html'));

@@ -11,7 +11,7 @@ const viewProfile = async (userId) => {
 };
 
 const updateProfile = async (userId, username, email, age) => {
-  const user = await User.findOne({_id: userId});
+  // const user = await User.findOne({_id: userId});
 
   const existingEmail = await User.findOne({_id: {$ne: userId}, email});
   if(existingEmail){

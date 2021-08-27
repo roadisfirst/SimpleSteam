@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Game } from '../../models';
+import { Game, Tag } from '../../models';
 
 const ROOT_API = '/api/games';
 
@@ -12,11 +12,15 @@ export class GamesService {
 
   constructor(private http: HttpClient) { }
 
-  public fetch(): Observable<Game[]> {
+  public fetchGames(): Observable<Game[]> {
     return this.http.get<Game[]>(ROOT_API);
   }
 
   public showGamesFromLibrary(): Observable<Game[]> {
     return this.http.get<Game[]>(ROOT_API + '/library');
+  }
+
+  public fetchGameTags(): Observable<Tag[]> {
+    return this.http.get<Tag[]>(ROOT_API + '/tags');
   }
 }
