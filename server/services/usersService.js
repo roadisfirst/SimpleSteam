@@ -1,7 +1,7 @@
 const {User} = require('../models/userModel');
 
 const getAllUsers = async () => {
-  const users = await User.find({}, '-password -__v -deleted');
+  const users = await User.find({}, '-password -__v -deleted -created_date');
   return users;
 }
 
@@ -61,10 +61,10 @@ const removeFriendship = async (user1Id, user2Id) => {
   await removeFriend(user2Id, user1Id);
 };
 
-const getFriendsByFriendsArray = async (friendsIds) => {
-  const friendsList = await User.find({ '_id': { $in: friendsIds }},
-      '-__v');
-  return friendsList;
+const getUsersByUsersArray = async (usersIds) => {
+  const usersList = await User.find({ '_id': { $in: usersIds }},
+      '-__v -deleted -created_date -password');
+  return usersList;
 };
 
 module.exports = {
@@ -75,5 +75,5 @@ module.exports = {
   makeFriendship,
   removeFriendship,
   getFriendsArrayByUserId,
-  getFriendsByFriendsArray,
+  getUsersByUsersArray,
 };

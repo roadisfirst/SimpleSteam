@@ -11,16 +11,24 @@
         <ng-template #noUsername>{{friend.email}}</ng-template>
         <button type="button" (click)="deleteFromFriends(friend._id)">Remove Friend</button>
       </div>
+      <div *ngIf="!friends.length">Friend list is empty for now</div>
+    </div>
+    
+    <div *ngIf="!!senderIdsFromRecievedInvites || !!recieverIdsFromSentInvites">
+      <h2>My Invites</h2>
     </div>
   </div>
   <ng-template #searchFriendsBlock>
     <h2>Search Friends: {{searchFriends}}</h2>
     <div class="users-container" *ngIf="users$ | async as users">
       <ng-container *ngIf="(users | searchFilter: searchFriends : getUsername) as result">
-        <div *ngFor='let user of result'>
+        <div class="user-item" *ngFor='let user of result'>
           <div *ngIf="user">{{user.username}}</div>
-          <ng-container *ngIf="!isUserInFriendsList(user._id)">
+          <ng-container *ngIf="!isUserInFriendsList(user._id) && !isUserInRecieverIdsList(user._id)">
             <button type="button" (click)="addToFriends(user._id)">Add Friend</button>
+          </ng-container>
+          <ng-container *ngIf="isUserInRecieverIdsList(user._id)">
+            <button type="button" (click)="cancelFriendInvite(user._id)">Cancel Friend Invite</button>
           </ng-container>
           <ng-container *ngIf="isUserInFriendsList(user._id)">
             <button type="button" (click)="deleteFromFriends(user._id)">Remove Friend</button>

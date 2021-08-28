@@ -28,4 +28,8 @@ export class UsersService {
   public getFriendsIdArray(): Observable<string[]> {
     return this.http.get<string[]>(ROOT_API + '/friendsArray');
   }
+
+  public fetchUsersRecievedInvites(): Observable<User[]> {
+    return this.http.get<User[]>(ROOT_API + '/');
+  }
 }

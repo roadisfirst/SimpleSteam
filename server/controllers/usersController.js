@@ -8,7 +8,7 @@ const {
   removeGameByIdFromUserLibrary,
   removeFriendship,
   getFriendsArrayByUserId,
-  getFriendsByFriendsArray,
+  getUsersByUsersArray,
 } = require('../services/usersService');
 
 const {
@@ -60,7 +60,7 @@ router.patch('/unfriend/:id', asyncWrapper(async (req, res) => {
 router.get('/friends', asyncWrapper(async (req, res) => {
   const {userId} = req.user;
   const friendsArray = await getFriendsArrayByUserId(userId);
-  const friends = await getFriendsByFriendsArray(friendsArray);
+  const friends = await getUsersByUsersArray(friendsArray);
   if (!friends) {
     throw new InvalidRequestError();
   }
@@ -71,6 +71,16 @@ router.get('/friendsArray', asyncWrapper(async (req, res) => {
   const {userId} = req.user;
   const friendsArray = await getFriendsArrayByUserId(userId);
   res.json(friendsArray);
+}));
+
+router.get('/pendingInvitesUsers', asyncWrapper(async (req, res) => {
+  const {userId} = req.user;
+  const friendsArray = await getFriendsArrayByUserId(userId);
+  const pendingInvitesUsers = await getUsersByUsersArray(friendsArray);
+  if (!friends) {
+    throw new InvalidRequestError();
+  }
+  res.json(friends);
 }));
 
 module.exports = {

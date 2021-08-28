@@ -12,6 +12,8 @@ import { User } from 'src/app/models';
 export class FriendsComponent implements OnInit {
   public friends$: Observable<User[]>;
   public users$: Observable<User[]>;
+  public recieverIdsFromSentInvites: string[] = [];
+  public senderIdsFromRecievedInvites: string[] = [];
   public searchFriends: string;
   public friendsList: string[] = [];
   constructor(
@@ -23,6 +25,8 @@ export class FriendsComponent implements OnInit {
     this.getFriends();
     this.getUsers();
     this.getFriendsList();
+    this.getRecieverIdsList();
+    this.getSenderIdsList();
   }
 
   public getFriends(): void {
@@ -49,6 +53,20 @@ export class FriendsComponent implements OnInit {
       res => {
         console.log(res.message);
         this.getFriends();
+        this.getRecieverIdsList();
+      },
+      error => {
+        console.log(error);
+      });
+    console.log('request sent. Waiting for response...');
+  }
+
+  
+  public cancelFriendInvite(recieverId: string): void {
+    this.relationsService.cancelInvite(recieverId).subscribe(
+      res => {
+        console.log(res.message);
+        this.getRecieverIdsList();
       },
       error => {
         console.log(error);
@@ -72,5 +90,27 @@ export class FriendsComponent implements OnInit {
   }
 
   public getUsername: (user: User) => string = (user) => user.username;
+
+  public getRecieverIdsList(): void {
+    this.relationsService.getRecieverIdsArr().subscribe(recieverIds => {
+      this.recieverIdsFromSentInvites = recieverIds;
+      console.log(this.recieverIdsFromSentInvites);
+    });
+  }
+
+  public getSenderIdsList(): void {
+    this.relationsService.getSenderIdsArr().subscribe(senderIds => {
+      this.senderIdsFromRecievedInvites = senderIds;
+      console.log(this.senderIdsFromRecievedInvites);
+    });
+  }
+
+  public isUserInRecieverIdsList(id: string): boolean {
+    return this.recieverIdsFromSentInvites.includes(id);
+  }
+
+  public isUserInSenderIdsList(id: string): boolean {
+    return this.senderIdsFromRecievedInvites.includes(id);
+  }
 
 }

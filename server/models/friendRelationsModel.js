@@ -1,11 +1,11 @@
 const mongoose = require('mongoose');
 
 const FriendRelations = mongoose.model('FriendRelations', {
-  senderUser: {
+  senderId: {
     type: mongoose.Schema.Types.ObjectId,
     required: true,
   },
-  recieverUser: {
+  recieverId: {
     type: mongoose.Schema.Types.ObjectId,
     required: true,
   },

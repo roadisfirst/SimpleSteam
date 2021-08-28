@@ -28,3 +28,15 @@ export interface Tag {
   name: string;
   selected?: boolean;
 }
+
+enum InviteStatus {
+  PENDING = 'PENDING',
+  ACCEPTED = 'ACCEPTED',
+  REJECTED = 'REJECTED'
+}
+
+export interface Invite {
+  senderId: string;
+  recieverId: string;
+  status: InviteStatus;
+}
