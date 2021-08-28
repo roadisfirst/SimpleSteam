@@ -16,6 +16,10 @@ export class GamesService {
     return this.http.get<Game[]>(ROOT_API);
   }
 
+  public fetchGameById(gameId: string): Observable<Game> {
+    return this.http.get<Game>(ROOT_API + `/about/${gameId}`);
+  }
+
   public showGamesFromLibrary(): Observable<Game[]> {
     return this.http.get<Game[]>(ROOT_API + '/library');
   }

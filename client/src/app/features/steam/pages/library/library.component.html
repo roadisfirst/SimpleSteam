@@ -3,11 +3,14 @@
   <div class="games-container" *ngIf="library$ | async as library">
     <div class="game-item" *ngFor="let item of library">
       <h3>{{item.name}}</h3>
-      <p>{{item.price}}</p>
+      <p>{{item.price | currency:'UAH'}}</p>
       <p>{{item.description}}</p>
       <p>{{item.tags}}</p>
       <button type="button" (click)="download(item._id)">Download</button>
       <button type="button" (click)="share(item._id)">Share</button>
+    </div>
+    <div *ngIf="!library.length">
+      Add games to your library
     </div>
   </div>
 </div>

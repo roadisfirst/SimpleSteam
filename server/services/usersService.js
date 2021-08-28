@@ -1,7 +1,7 @@
 const {User} = require('../models/userModel');
 
-const getAllUsers = async () => {
-  const users = await User.find({}, '-password -__v -deleted -created_date');
+const getAllUsers = async (userId) => {
+  const users = await User.find({_id: {$ne: userId}}, '-password -__v -deleted -created_date');
   return users;
 }
 

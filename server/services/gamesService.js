@@ -5,6 +5,11 @@ const getGames = async (userId) => {
   return games;
 };
 
+const getGameById = async (gameId) => {
+  const game = await Game.findOne({_id: gameId}, '-__v ');
+  return game;
+};
+
 const getGamesByUserLibraryArray = async (libraryIds) => {
   const gamesFromLibrary = await Game.find({ '_id': { $in: libraryIds } },
       '-__v');
@@ -13,5 +18,6 @@ const getGamesByUserLibraryArray = async (libraryIds) => {
 
 module.exports = {
   getGames,
+  getGameById,
   getGamesByUserLibraryArray,
 };

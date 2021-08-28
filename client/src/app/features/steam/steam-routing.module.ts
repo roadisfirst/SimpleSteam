@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { FriendsComponent } from './pages/friends/friends.component';
-import { GameItemComponent } from './pages/games/game-item/game-item.component';
+import { GameItemComponent } from './pages/game-item/game-item.component';
 import { GamesComponent } from './pages/games/games.component';
 import { LibraryComponent } from './pages/library/library.component';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { GameItemResolver } from './resolvers/game-item.resolver';
 import { UserProfileResolver } from './resolvers/user-profile.resolver';
 
 
@@ -20,8 +21,11 @@ const routes: Routes = [
     pathMatch: 'full',
   },
   {
-    path: 'games/:id',
+    path: 'games/:gameId',
     component: GameItemComponent,
+    resolve: {
+      game: GameItemResolver,
+    },
   },
   {
     path: 'library',

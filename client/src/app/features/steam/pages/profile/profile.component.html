@@ -1,9 +1,5 @@
-<div class="container" *ngIf="user.email; else loggedOut">
-  <header class="jumbotron">
-    <h3>
-      <strong>{{ user.email }}</strong> Profile
-    </h3>
-  </header>
+<div class="container" *ngIf="user.email">
+    <h3>Profile</h3>
   <form [formGroup]="profileForm" (submit)="submit()" #f="ngForm">
     <input type="text" placeholder="Username" formControlName="username">
     <input type="email" placeholder="Email" formControlName="email">
@@ -11,8 +7,4 @@
     <button type="submit" [disabled]="!profileForm.valid">Submit</button>
   </form>
 </div>
-
-<ng-template #loggedOut>
-  Please login.
-</ng-template>
 

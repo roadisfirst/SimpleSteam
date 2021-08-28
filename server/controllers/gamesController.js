@@ -3,6 +3,7 @@ const router = new express.Router();
 
 const {
   getGames,
+  getGameById,
   getGamesByUserLibraryArray,
 } = require('../services/gamesService');
 
@@ -28,7 +29,6 @@ router.get('/', asyncWrapper(async (req, res) => {
   if (!games) {
     throw new InvalidRequestError();
   }
-
   res.json(games);
 }));
 
@@ -49,6 +49,17 @@ router.get('/tags', asyncWrapper(async (req, res) => {
     throw new InvalidRequestError();
   }
   res.json(tags);
+}));
+
+router.get('/about/:gameId', asyncWrapper(async (req, res) => {
+  const {userId} = req.user;
+  const {gameId} = req.params;
+  console.log('GameId', gameId);
+  const game = await getGameById(gameId);
+  if (!game) {
+    throw new InvalidRequestError();
+  }
+  res.json(game);
 }));
 
 module.exports = {

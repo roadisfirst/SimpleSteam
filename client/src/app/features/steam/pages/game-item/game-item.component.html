@@ -1,0 +1,8 @@
+<div class="content">
+  <ng-container *ngIf="game">
+    <h2>{{game.name}}</h2>
+    <p>{{game.price | currency:'UAH'}}</p>
+    <p>{{game.description}}</p>
+    <p>{{game.tags}}</p>
+  </ng-container>
+</div>

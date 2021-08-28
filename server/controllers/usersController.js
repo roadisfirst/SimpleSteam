@@ -48,7 +48,8 @@ router.patch('/library/remove/:id', asyncWrapper(async (req, res) => {
 }));
 
 router.get('/', asyncWrapper(async (req, res) => {
-  const users = await getAllUsers();
+  const {userId} = req.user;
+  const users = await getAllUsers(userId);
 
   res.json(users);
 }));
