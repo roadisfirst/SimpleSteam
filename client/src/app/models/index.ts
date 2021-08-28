@@ -29,7 +29,7 @@ export interface Tag {
   selected?: boolean;
 }
 
-enum InviteStatus {
+export enum InviteStatus {
   PENDING = 'PENDING',
   ACCEPTED = 'ACCEPTED',
   REJECTED = 'REJECTED'

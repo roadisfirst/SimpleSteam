@@ -17,7 +17,6 @@ export class UsersService {
   }
   
   public unfriend(id: string): Observable<Message> {
-    console.log('in service')
     return this.http.patch<Message>(ROOT_API + `/unfriend/${id}`, id);
   }
 
@@ -29,7 +28,7 @@ export class UsersService {
     return this.http.get<string[]>(ROOT_API + '/friendsArray');
   }
 
-  public fetchUsersRecievedInvites(): Observable<User[]> {
-    return this.http.get<User[]>(ROOT_API + '/');
+  public fetchUsersWithPendingInvites(): Observable<User[]> {
+    return this.http.get<User[]>(ROOT_API + '/pendingInvitesUsers');
   }
 }

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { FriendRelationsService } from 'src/app/core/services/friend-relations.service';
 import { UsersService } from 'src/app/core/services/users.service';
-import { User } from 'src/app/models';
+import { InviteStatus, User } from 'src/app/models';
 
 @Component({
   selector: 'steam-friends',
@@ -12,10 +12,12 @@ import { User } from 'src/app/models';
 export class FriendsComponent implements OnInit {
   public friends$: Observable<User[]>;
   public users$: Observable<User[]>;
+  public usersWithInvites$: Observable<User[]>;
   public recieverIdsFromSentInvites: string[] = [];
   public senderIdsFromRecievedInvites: string[] = [];
   public searchFriends: string;
   public friendsList: string[] = [];
+  public InviteStatusTypes = InviteStatus;
   constructor(
     private readonly usersService: UsersService,
     private readonly relationsService: FriendRelationsService,
@@ -27,10 +29,15 @@ export class FriendsComponent implements OnInit {
     this.getFriendsList();
     this.getRecieverIdsList();
     this.getSenderIdsList();
+    this.getUsersWithInvites();
   }
 
   public getFriends(): void {
     this.friends$ = this.usersService.fetchUserFriends();
+  }
+
+  public getUsersWithInvites(): void {
+    this.usersWithInvites$ = this.usersService.fetchUsersWithPendingInvites();
   }
 
   public deleteFromFriends(userId: string): void {
@@ -54,6 +61,7 @@ export class FriendsComponent implements OnInit {
         console.log(res.message);
         this.getFriends();
         this.getRecieverIdsList();
+        this.getFriendsList();
       },
       error => {
         console.log(error);
@@ -67,6 +75,22 @@ export class FriendsComponent implements OnInit {
       res => {
         console.log(res.message);
         this.getRecieverIdsList();
+        this.getSenderIdsList();
+        this.getUsersWithInvites();
+      },
+      error => {
+        console.log(error);
+      });
+    console.log('request sent. Waiting for response...');
+  }
+
+  public answerUserInvite(senderId: string, status: InviteStatus): void {
+    this.relationsService.answerInvite(senderId, status).subscribe(
+      res => {
+        console.log(res.message);
+        this.getSenderIdsList();
+        this.getUsersWithInvites();
+        this.getFriends();
       },
       error => {
         console.log(error);

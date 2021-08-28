@@ -12,6 +12,11 @@ const {
 } = require('../services/usersService');
 
 const {
+  getSentInvitesRecieverIdsArr,
+  getRecievedInvitesSenderIdsArr
+} = require('../services/friendRelationsService');
+
+const {
   InvalidRequestError,
 } = require('../utils/errors');
 
@@ -75,12 +80,13 @@ router.get('/friendsArray', asyncWrapper(async (req, res) => {
 
 router.get('/pendingInvitesUsers', asyncWrapper(async (req, res) => {
   const {userId} = req.user;
-  const friendsArray = await getFriendsArrayByUserId(userId);
-  const pendingInvitesUsers = await getUsersByUsersArray(friendsArray);
-  if (!friends) {
+  const recieverIds = await getSentInvitesRecieverIdsArr(userId);
+  const senderIds = await getRecievedInvitesSenderIdsArr(userId);
+  const pendingInvitesUsers = await getUsersByUsersArray([...recieverIds, ...senderIds]);
+  if (!pendingInvitesUsers) {
     throw new InvalidRequestError();
   }
-  res.json(friends);
+  res.json(pendingInvitesUsers);
 }));
 
 module.exports = {

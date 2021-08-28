@@ -5,8 +5,8 @@ const {
   sendInvite,
   cancelInviteBySender,
   updateInviteStatusByReciever,
-  getSentInvitesByUserId,
-  getRecievedInvitesByUserId,
+  getSentInvitesRecieverIdsArr,
+  getRecievedInvitesSenderIdsArr,
 } = require('../services/friendRelationsService');
 
 const {
@@ -47,10 +47,11 @@ router.delete('/cancelInvite/:recieverId', asyncWrapper(async (req, res) => {
 router.patch('/answerInvite', asyncWrapper(async (req, res) => {
   const {userId} = req.user;
   const {
+    senderId,
     status,
   } = req.body;
 
-  const updatedInvite = await updateInviteStatusByReciever(userId, status);
+  const updatedInvite = await updateInviteStatusByReciever(senderId, userId, status);
   if (!updatedInvite) {
     throw new InvalidRequestError();
   }
@@ -63,21 +64,19 @@ router.patch('/answerInvite', asyncWrapper(async (req, res) => {
 
 router.get('/getSentInvitesRecieverIdsArr', asyncWrapper(async (req, res) => {
   const {userId} = req.user;
-  const sentInvites = await getSentInvitesByUserId(userId);
-  if (!sentInvites) {
+  const recieverIdsArr = await getSentInvitesRecieverIdsArr(userId);
+  if (!recieverIdsArr) {
     throw new InvalidRequestError();
   }
-  const recieverIdsArr = sentInvites.map(invite => invite.recieverId);
   res.json(recieverIdsArr);
 }));
 
 router.get('/getRecievedInvitesSenderIdsArr', asyncWrapper(async (req, res) => {
   const {userId} = req.user;
-  const recievedInvites = await getRecievedInvitesByUserId(userId);
-  if (!recievedInvites) {
+  const senderIdsArr = await getRecievedInvitesSenderIdsArr(userId);
+  if (!senderIdsArr) {
     throw new InvalidRequestError();
   }
-  const senderIdsArr = recievedInvites.map(invite => invite.senderId);
   res.json(senderIdsArr);
 }));
 

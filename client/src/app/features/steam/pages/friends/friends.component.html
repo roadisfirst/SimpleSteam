@@ -14,8 +14,21 @@
       <div *ngIf="!friends.length">Friend list is empty for now</div>
     </div>
     
-    <div *ngIf="!!senderIdsFromRecievedInvites || !!recieverIdsFromSentInvites">
+    <div *ngIf="senderIdsFromRecievedInvites.length || recieverIdsFromSentInvites.length">
       <h2>My Invites</h2>
+      <div class="friends-container" *ngIf="usersWithInvites$ | async as usersWithInvites">
+        <div class="friend-item" *ngFor="let friend of usersWithInvites">
+          <div *ngIf="friend.username; else noUsername">{{friend.username}}</div>
+        <ng-template #noUsername>{{friend.email}}</ng-template>
+        <div *ngIf="isUserInSenderIdsList(friend._id)">
+          <button type="button" (click)="answerUserInvite(friend._id, InviteStatusTypes.ACCEPTED)">Accept Friend Invite</button>
+          <button type="button" (click)="answerUserInvite(friend._id, InviteStatusTypes.REJECTED)">Reject Friend Invite</button>
+        </div>
+        <ng-container *ngIf="isUserInRecieverIdsList(friend._id)">
+          <button type="button" (click)="cancelFriendInvite(friend._id)">Cancel Friend Invite</button>
+        </ng-container>
+        </div>
+      </div>
     </div>
   </div>
   <ng-template #searchFriendsBlock>

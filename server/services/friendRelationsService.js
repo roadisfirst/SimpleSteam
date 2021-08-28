@@ -11,25 +11,26 @@ const cancelInviteBySender = async (senderUserId, recieverUserId) => {
   return deletedInvite;
 }
 
-const updateInviteStatusByReciever = async (recieverUserId, newStatus) => {
-  const updatedInvite = await FriendRelations.findOneAndUpdate({recieverId: recieverUserId, status: 'PENDING'}, {$set: {status: newStatus}});
+const updateInviteStatusByReciever = async (senderUserId, recieverUserId, newStatus) => {
+  const updatedInvite = await FriendRelations.findOneAndUpdate({senderId: senderUserId,
+    recieverId: recieverUserId, status: 'PENDING'}, {$set: {status: newStatus}});
   return updatedInvite;
 }
 
 const getSentInvitesRecieverIdsArr = async (userId) => {
   const sentInvites = await FriendRelations.find({senderId: userId, status: 'PENDING'});
-  return sentInvites;
+  return sentInvites.map(invite => invite.recieverId);
 }
 
 const getRecievedInvitesSenderIdsArr = async (userId) => {
   const recievedInvites = await FriendRelations.find({recieverId: userId, status: 'PENDING'});
-  return recievedInvites;
+  return recievedInvites.map(invite => invite.senderId);
 }
 
 module.exports = {
   sendInvite,
   cancelInviteBySender,
   updateInviteStatusByReciever,
-  getSentInvitesByUserId,
-  getRecievedInvitesByUserId,
+  getSentInvitesRecieverIdsArr,
+  getRecievedInvitesSenderIdsArr,
 };

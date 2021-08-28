@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Invite, Message } from 'src/app/models';
+import { InviteStatus, Message } from 'src/app/models';
 
 const ROOT_API = '/api/friendRelations';
 
@@ -20,8 +20,8 @@ export class FriendRelationsService {
     return this.http.delete<Message>(ROOT_API + `/cancelInvite/${recieverId}`);
   }
 
-  public answerInvite(status: string): Observable<Message> {
-    return this.http.patch<Message>(ROOT_API + '/answerInvite', status);
+  public answerInvite(senderId: string, status: InviteStatus): Observable<Message> {
+    return this.http.patch<Message>(ROOT_API + '/answerInvite', {senderId, status});
   }
 
   public getRecieverIdsArr(): Observable<string[]> {
