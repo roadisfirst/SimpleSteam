@@ -1,1 +1,33 @@
-<p>Your friends will be here</p>
+<div class="content">
+  <h2>Friends</h2>
+    <div class="">
+      <input type="text" class="" placeholder="Search Friends" [(ngModel)]=searchFriends>
+    </div>
+  <div *ngIf="!searchFriends; else searchFriendsBlock">
+    <h2>My Friends</h2>
+    <div class="friends-container" *ngIf="friends$ | async as friends">
+      <div class="friend-item" *ngFor="let friend of friends">
+        <div *ngIf="friend.username; else noUsername">{{friend.username}}</div>
+        <ng-template #noUsername>{{friend.email}}</ng-template>
+        <button type="button" (click)="deleteFromFriends(friend._id)">Remove Friend</button>
+      </div>
+    </div>
+  </div>
+  <ng-template #searchFriendsBlock>
+    <h2>Search Friends: {{searchFriends}}</h2>
+    <div class="users-container" *ngIf="users$ | async as users">
+      <ng-container *ngIf="(users | searchFilter: searchFriends : getUsername) as result">
+        <div *ngFor='let user of result'>
+          <div *ngIf="user">{{user.username}}</div>
+          <ng-container *ngIf="!isUserInFriendsList(user._id)">
+            <button type="button" (click)="addToFriends(user._id)">Add Friend</button>
+          </ng-container>
+          <ng-container *ngIf="isUserInFriendsList(user._id)">
+            <button type="button" (click)="deleteFromFriends(user._id)">Remove Friend</button>
+          </ng-container>
+        </div>
+        <div *ngIf="!result.length">No matches</div>
+      </ng-container>
+    </div>
+  </ng-template>
+</div>

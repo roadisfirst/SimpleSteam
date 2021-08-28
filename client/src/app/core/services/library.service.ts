@@ -11,22 +11,17 @@ const ROOT_API = '/api/users/library';
 export class LibraryService {
 
   constructor(private http: HttpClient) {
-
   }
 
   public addGameToUserLibrary(gameId: string): Observable<Message> {
-    return this.http.patch<Message>(ROOT_API + `/add/${gameId}`,
-    gameId,
-    );
+    return this.http.patch<Message>(ROOT_API + `/add/${gameId}`, gameId);
   }
 
   public removeGameFromUserLibrary(gameId: string): Observable<Message> {
-    return this.http.patch<Message>(ROOT_API + `/remove/${gameId}`,
-    gameId,
-    );
+    return this.http.patch<Message>(ROOT_API + `/remove/${gameId}`, gameId);
   }
 
   public getLibrary(): Observable<string[]> {
-    return this.http.get<string[]>(ROOT_API );
+    return this.http.get<string[]>(ROOT_API);
   }
 }

@@ -12,7 +12,8 @@ export class SearchFilterPipe implements PipeTransform {
     const query = input.toLowerCase();
 
     return value.filter((item) => {
-      return getProperty(item).toLowerCase().includes(query);
+      return getProperty(item) &&
+        getProperty(item).toLowerCase().includes(query);
     });
   }
 

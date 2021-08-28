@@ -61,6 +61,12 @@ const removeFriendship = async (user1Id, user2Id) => {
   await removeFriend(user2Id, user1Id);
 };
 
+const getFriendsByFriendsArray = async (friendsIds) => {
+  const friendsList = await User.find({ '_id': { $in: friendsIds }},
+      '-__v');
+  return friendsList;
+};
+
 module.exports = {
   getAllUsers,
   getLibraryArrayByUserId,
@@ -68,4 +74,6 @@ module.exports = {
   removeGameByIdFromUserLibrary,
   makeFriendship,
   removeFriendship,
+  getFriendsArrayByUserId,
+  getFriendsByFriendsArray,
 };
