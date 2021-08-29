@@ -35,11 +35,15 @@ router.get('/', asyncWrapper(async (req, res) => {
 router.get('/library', asyncWrapper(async (req, res) => {
   const {userId} = req.user;
   const gameArr = await getLibraryArrayByUserId(userId);
-  const gamesLibrary = await getGamesByUserLibraryArray(gameArr);
-  if (!gamesLibrary) {
-    throw new InvalidRequestError();
+  if(!gameArr.length){
+    res.json([]);
+  } else {
+    const gamesLibrary = await getGamesByUserLibraryArray(gameArr);
+    if (!gamesLibrary) {
+      throw new InvalidRequestError();
+    }
+    res.json(gamesLibrary);
   }
-  res.json(gamesLibrary);
 }));
 
 router.get('/tags', asyncWrapper(async (req, res) => {
