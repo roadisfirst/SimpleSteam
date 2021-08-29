@@ -1,5 +1,7 @@
 input {
   display: block;
+  padding: 5px;
+  margin: 5px 0;
 }
 
 .alert-danger {
@@ -8,4 +10,14 @@ input {
 
 .alert-success {
   color: green;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+form {
+  margin: auto;
 }

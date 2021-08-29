@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import {
   Resolve,
-  RouterStateSnapshot,
-  ActivatedRouteSnapshot
 } from '@angular/router';
 import { Observable } from 'rxjs';
 import { User } from '../../../models';
@@ -16,7 +14,7 @@ export class UserProfileResolver implements Resolve<User> {
     private readonly profileService: ProfileService,
   ) {}
   
-  public resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<User> {
+  public resolve(): Observable<User> {
     return this.profileService.getUserDetails();
   }
 }

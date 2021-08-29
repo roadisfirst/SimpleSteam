@@ -1,5 +1,4 @@
 .nav-link {
-  // margin: 8px;
   padding: 20px 40px;
   color: #fff;
   background-color: rgba(7, 7, 87, 0.719);
@@ -20,7 +19,7 @@ a.active {
 .header {
   display: flex;
   align-items: center;
-  // box-shadow: 5px 5px 5px grey;
+  justify-content: center;
 }
 
 .header-logo {
@@ -28,6 +27,3 @@ a.active {
   height: auto;
   display: flex;
 }
-
-// .header-logo-link {
-// }

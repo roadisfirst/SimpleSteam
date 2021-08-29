@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import {
   Resolve,
-  RouterStateSnapshot,
   ActivatedRouteSnapshot
 } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -16,7 +15,7 @@ export class GameItemResolver implements Resolve<Game> {
     private readonly gamesService: GamesService,
   ) {}
 
-  public resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Game> {
+  public resolve(route: ActivatedRouteSnapshot): Observable<Game> {
     return this.gamesService.fetchGameById(route.params.gameId);
   }
 }

@@ -1,7 +1,7 @@
 <div class="content">
-  <h2>Games</h2>
-  <div class="">
-    <input type="text" class="" placeholder="Search Games" [(ngModel)]=searchGame>
+  <h2 class="games-header">Games</h2>
+  <div class="games-search">
+    <input type="text" class="games-search-input" placeholder="Search Games" [(ngModel)]=searchGame>
   </div>
   <div class="games-filters">
     <label class="filter-label" for="pricerange">Filter by price</label>
@@ -10,7 +10,7 @@
     <div class="tags-container" *ngIf="tags$ | async as tags">
       <div class="tag-item" *ngFor="let tag of tags; let index=index">
         <input type="checkbox" value={{tag.name}} id={{tag.name}}
-          (change)="updateTagArray(tag); triggerTagChanges=!tag.selected" [(ngModel)]="tag.selected">
+          (change)="updateTagArray(tag); triggerTagChanges=tag.selected" [(ngModel)]="tag.selected">
         <label class="checkbox-label" for={{tag.name}}>{{tag.name}}</label>
       </div>
     </div>

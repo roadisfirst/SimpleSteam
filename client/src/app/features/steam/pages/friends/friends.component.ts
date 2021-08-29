@@ -18,8 +18,6 @@ export class FriendsComponent implements OnInit {
   public searchFriends: string;
   public friendsList: string[] = [];
   public InviteStatusTypes = InviteStatus;
-  public errorMessage = '';
-  public infoMessage = '';
   constructor(
     private readonly usersService: UsersService,
     private readonly relationsService: FriendRelationsService,
@@ -45,19 +43,16 @@ export class FriendsComponent implements OnInit {
   public deleteFromFriends(userId: string): void {
     this.usersService.unfriend(userId).subscribe(
       res => {
-        this.infoMessage = res.message;
         console.log(res.message);
         this.getFriends();
         this.getFriendsList();
       },
       error => {
-        this.errorMessage = error.message;
         console.log(error);
       });
   }
 
   public addToFriends(userId: string): void {
-    console.log(userId);
     this.relationsService.sendInvite(userId).subscribe(
       res => {
         console.log(res.message);
