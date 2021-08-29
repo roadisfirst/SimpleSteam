@@ -54,7 +54,6 @@ export class FriendsComponent implements OnInit {
         this.errorMessage = error.message;
         console.log(error);
       });
-    console.log('request sent. Waiting for response...');
   }
 
   public addToFriends(userId: string): void {
@@ -69,7 +68,6 @@ export class FriendsComponent implements OnInit {
       error => {
         console.log(error);
       });
-    console.log('request sent. Waiting for response...');
   }
 
   
@@ -84,7 +82,6 @@ export class FriendsComponent implements OnInit {
       error => {
         console.log(error);
       });
-    console.log('request sent. Waiting for response...');
   }
 
   public answerUserInvite(senderId: string, status: InviteStatus): void {
@@ -98,7 +95,6 @@ export class FriendsComponent implements OnInit {
       error => {
         console.log(error);
       });
-    console.log('request sent. Waiting for response...');
   }
 
   public getUsers(): void {

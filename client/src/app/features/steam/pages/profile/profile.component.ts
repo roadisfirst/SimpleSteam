@@ -24,7 +24,14 @@ export class ProfileComponent implements OnInit {
 
   public submit(): void {
     const {username, email, age} = this.profileForm.value;
-    this.profileService.updateUserDetails(username, email, age).subscribe();
+    this.profileService.updateUserDetails(username, email, age).subscribe(
+      message => {
+        console.log(message);
+      },
+      error => {
+        console.log(error.message);
+      }
+    );
   }
 
   private initForm() {

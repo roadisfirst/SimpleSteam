@@ -47,7 +47,6 @@ export class GamesComponent implements OnInit {
       error => {
         console.log(error);
       });
-    console.log('request sent. Waiting for response...');
   }
 
   public removeFromLibrary(gameId: string): void {
@@ -59,7 +58,6 @@ export class GamesComponent implements OnInit {
       error => {
         console.log(error);
       });
-    console.log('request sent. Waiting for response...');
   }
 
   public loadLibrary(): void {
