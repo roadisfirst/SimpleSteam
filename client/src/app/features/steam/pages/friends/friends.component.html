@@ -51,4 +51,10 @@
       </ng-container>
     </div>
   </ng-template>
+  <div class="alert-danger" *ngIf="errorMessage.length">
+    {{ errorMessage }}
+  </div>
+  <div class="alert-success" *ngIf="infoMessage.length">
+    {{ infoMessage }}
+  </div>
 </div>

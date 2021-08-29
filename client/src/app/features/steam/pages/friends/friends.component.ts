@@ -18,6 +18,8 @@ export class FriendsComponent implements OnInit {
   public searchFriends: string;
   public friendsList: string[] = [];
   public InviteStatusTypes = InviteStatus;
+  public errorMessage = '';
+  public infoMessage = '';
   constructor(
     private readonly usersService: UsersService,
     private readonly relationsService: FriendRelationsService,
@@ -41,14 +43,15 @@ export class FriendsComponent implements OnInit {
   }
 
   public deleteFromFriends(userId: string): void {
-    console.log(userId);
     this.usersService.unfriend(userId).subscribe(
       res => {
+        this.infoMessage = res.message;
         console.log(res.message);
         this.getFriends();
         this.getFriendsList();
       },
       error => {
+        this.errorMessage = error.message;
         console.log(error);
       });
     console.log('request sent. Waiting for response...');
@@ -105,7 +108,6 @@ export class FriendsComponent implements OnInit {
   public getFriendsList(): void {
     this.usersService.getFriendsIdArray().subscribe(friendsIds => {
       this.friendsList = friendsIds;
-      console.log(this.friendsList);
     });
   }
 
@@ -118,14 +120,12 @@ export class FriendsComponent implements OnInit {
   public getRecieverIdsList(): void {
     this.relationsService.getRecieverIdsArr().subscribe(recieverIds => {
       this.recieverIdsFromSentInvites = recieverIds;
-      console.log(this.recieverIdsFromSentInvites);
     });
   }
 
   public getSenderIdsList(): void {
     this.relationsService.getSenderIdsArr().subscribe(senderIds => {
       this.senderIdsFromRecievedInvites = senderIds;
-      console.log(this.senderIdsFromRecievedInvites);
     });
   }
 

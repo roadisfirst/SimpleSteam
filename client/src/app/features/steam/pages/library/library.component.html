@@ -2,10 +2,7 @@
   <h2>Library</h2>
   <div class="games-container" *ngIf="library$ | async as library">
     <div class="game-item" *ngFor="let item of library">
-      <h3>{{item.name}}</h3>
-      <p>{{item.price | currency:'UAH'}}</p>
-      <p>{{item.description}}</p>
-      <p>{{item.tags}}</p>
+      <steam-game-item [gameItem]="item"></steam-game-item>
       <button type="button" (click)="download(item._id)">Download</button>
       <button type="button" (click)="share(item._id)">Share</button>
     </div>

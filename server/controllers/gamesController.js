@@ -54,7 +54,6 @@ router.get('/tags', asyncWrapper(async (req, res) => {
 router.get('/about/:gameId', asyncWrapper(async (req, res) => {
   const {userId} = req.user;
   const {gameId} = req.params;
-  console.log('GameId', gameId);
   const game = await getGameById(gameId);
   if (!game) {
     throw new InvalidRequestError();

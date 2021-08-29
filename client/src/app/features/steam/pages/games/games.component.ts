@@ -65,7 +65,6 @@ export class GamesComponent implements OnInit {
   public loadLibrary(): void {
     this.libraryService.getLibrary().subscribe(gameIds => {
       this.library = gameIds;
-      console.log(this.library);
     });
   }
 
@@ -86,6 +85,5 @@ export class GamesComponent implements OnInit {
     } else {
         this.selectedTagsArray.push(item.name);
       }
-    console.log('in tag array:', this.selectedTagsArray);
   }
 }

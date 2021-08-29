@@ -19,16 +19,10 @@ export class ProfileComponent implements OnInit {
 
   public ngOnInit(): void {
     this.user = this.activatedRoute.snapshot.data.profile.user;
-    console.log(this.user);
-    // this.profileService.getUserDetails().subscribe(
-    //   data => {
-    //     console.log(data);
-    //   })
     this.initForm();
   }
 
   public submit(): void {
-    console.log(this.profileForm.value);
     const {username, email, age} = this.profileForm.value;
     this.profileService.updateUserDetails(username, email, age).subscribe();
   }

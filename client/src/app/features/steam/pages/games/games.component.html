@@ -23,16 +23,13 @@
       | tagFilter: triggerTagChanges: selectedTagsArray : getTagsArray
       | searchFilter: searchGame : getName) as result">
         <div class="game-item" *ngFor="let game of result">
-        <h3>{{game.name}}</h3>
-        <p>{{game.price | currency:'UAH'}}</p>
-        <p>{{game.description}}</p>
-        <p>{{game.tags}}</p>
-        <ng-container *ngIf="!isGameInLibrary(game._id)">
-          <button type="button" (click)="addToLibrary(game._id)">Add to Library</button>
-        </ng-container>
-        <ng-container *ngIf="isGameInLibrary(game._id)">
-          <button type="button" (click)="removeFromLibrary(game._id)">Remove from Library</button>
-        </ng-container>
+          <steam-game-item [gameItem]="game"></steam-game-item>
+          <ng-container *ngIf="!isGameInLibrary(game._id)">
+            <button type="button" (click)="addToLibrary(game._id)">Add to Library</button>
+          </ng-container>
+          <ng-container *ngIf="isGameInLibrary(game._id)">
+            <button type="button" (click)="removeFromLibrary(game._id)">Remove from Library</button>
+          </ng-container>
       </div>
     <div *ngIf="!result.length">No matches</div>
     </ng-container>

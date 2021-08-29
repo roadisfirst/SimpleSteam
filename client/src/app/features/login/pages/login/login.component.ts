@@ -43,11 +43,9 @@ export class LoginComponent implements OnInit {
   }
 
   public submit(): void {
-    console.log(this.loginForm.value);
     const { email, password } = this.loginForm.value;
     this.authService.login(email, password).subscribe(
       data => {
-        console.log(data);
         this.tokenStorage.saveToken(data.jwt_token);
         this.tokenStorage.saveUser(data);
         this.isLoginFailed = false;
@@ -55,7 +53,6 @@ export class LoginComponent implements OnInit {
         this.reloadPage();
       },
       err => {
-        console.log(err);
         this.errorMessage = err.error.message;
         this.isLoginFailed = true;
       }
