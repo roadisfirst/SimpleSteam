@@ -1,6 +1,6 @@
 <div class="content" *ngIf="user.email">
   <h2>Profile</h2>
-  <form [formGroup]="profileForm" (submit)="submit()" #f="ngForm">
+  <form [formGroup]="profileForm" (submit)="submit()">
     <input type="text" placeholder="Username" formControlName="username">
     <input type="email" placeholder="Email" formControlName="email">
     <input type="text" placeholder="Age" formControlName="age">

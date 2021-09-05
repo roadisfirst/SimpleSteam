@@ -18,7 +18,6 @@ export class GamesComponent implements OnInit {
   public minPrice = 0;
   public maxPrice: number;
   public maxVal = 0;
-  public triggerTagChanges: boolean | undefined;
   constructor(
     private readonly gamesService: GamesService,
     private readonly libraryService: LibraryService
@@ -77,11 +76,11 @@ export class GamesComponent implements OnInit {
     });
   }
 
-  public updateTagArray(item: Tag): void {
-    if(item.selected === false){
-      this.selectedTagsArray.splice(this.selectedTagsArray.indexOf(item.name), 1);
+  public updateTagArray(e: any, item: Tag): void {
+    if(e.target.checked){
+      this.selectedTagsArray.push(item.name);
     } else {
-        this.selectedTagsArray.push(item.name);
-      }
+      this.selectedTagsArray.splice(this.selectedTagsArray.indexOf(item.name), 1);
+    }
   }
 }

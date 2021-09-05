@@ -1,21 +1,28 @@
 import { Injectable } from '@angular/core';
 import {
   Resolve,
-  ActivatedRouteSnapshot
+  ActivatedRouteSnapshot,
+  Router
 } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import { GamesService } from 'src/app/core/services/games.service';
-import { Game } from 'src/app/models';
 
 @Injectable({
   providedIn: 'root'
 })
-export class GameItemResolver implements Resolve<Game> {
+export class GameItemResolver implements Resolve<any> {
   public constructor (
     private readonly gamesService: GamesService,
+    private readonly router: Router
   ) {}
 
-  public resolve(route: ActivatedRouteSnapshot): Observable<Game> {
-    return this.gamesService.fetchGameById(route.params.gameId);
+  public resolve(route: ActivatedRouteSnapshot): Observable<any> {
+    return this.gamesService.fetchGameById(route.params.gameId)
+      .pipe(
+        catchError((e) => {
+          this.router.navigateByUrl('**');
+          return of({game: null, error: e.message});
+        }));
   }
 }

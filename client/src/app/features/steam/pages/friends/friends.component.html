@@ -21,8 +21,8 @@
           <div *ngIf="friend.username; else noUsername">{{friend.username}}</div>
         <ng-template #noUsername>{{friend.email}}</ng-template>
         <div *ngIf="isUserInSenderIdsList(friend._id)">
-          <button type="button" (click)="answerUserInvite(friend._id, InviteStatusTypes.ACCEPTED)">Accept Friend Invite</button>
-          <button type="button" (click)="answerUserInvite(friend._id, InviteStatusTypes.REJECTED)">Reject Friend Invite</button>
+          <button type="button" (click)="answerUserInvite(friend._id, InviteStatusTypes.Accepted)">Accept Friend Invite</button>
+          <button type="button" (click)="answerUserInvite(friend._id, InviteStatusTypes.Rejected)">Reject Friend Invite</button>
         </div>
         <ng-container *ngIf="isUserInRecieverIdsList(friend._id)">
           <button type="button" (click)="cancelFriendInvite(friend._id)">Cancel Friend Invite</button>

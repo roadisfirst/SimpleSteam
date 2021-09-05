@@ -18,7 +18,7 @@ export class GameItemComponent implements OnInit {
 
   ngOnInit(): void {
     this.game = this.activatedRoute.snapshot.data.game;
-    !this.gameItem ? this.gameItem = this.game : this.gameItem;
+    this.gameItem ? this.gameItem : this.gameItem = this.game;
   }
 
 }
