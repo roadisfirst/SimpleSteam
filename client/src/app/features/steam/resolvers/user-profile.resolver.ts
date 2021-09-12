@@ -17,4 +17,5 @@ export class UserProfileResolver implements Resolve<User> {
   public resolve(): Observable<User> {
     return this.profileService.getUserDetails();
   }
+
 }

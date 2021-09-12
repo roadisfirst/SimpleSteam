@@ -1,3 +1,4 @@
+import { PlatformLocation } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { GamesService } from 'src/app/core/services/games.service';
@@ -10,9 +11,13 @@ import { Game } from 'src/app/models';
 })
 export class LibraryComponent implements OnInit {
   public library$: Observable<Game[]>;
+  public originURL: string;
   constructor(
     private readonly gamesService: GamesService,
-  ) { }
+    private readonly platformLocation: PlatformLocation,
+  ) { 
+    this.getOriginUrl(platformLocation);
+  }
 
   public ngOnInit(): void {
     this.library$ = this.gamesService.showGamesFromLibrary();
@@ -23,7 +28,12 @@ export class LibraryComponent implements OnInit {
   }
 
   public share(id: string): void {
-    const link = window.location.origin +  '/games/' + id;
+    const link = this.originURL +  '/games/' + id;
     window.alert(`You can share the link ${link}`);
   }
+
+  private getOriginUrl(platformLocation: any){
+    this.originURL = platformLocation.location.origin;
+  }
+
 }

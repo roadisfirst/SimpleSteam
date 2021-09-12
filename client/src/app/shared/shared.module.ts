@@ -6,6 +6,7 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { SearchFilterPipe } from './pipes/search-filter.pipe';
 import { PriceRangePipe } from './pipes/price-range.pipe';
 import { TagFilterPipe } from './pipes/tag-filter.pipe';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 const PUBLIC_COMPONENTS = [NavbarComponent, PageNotFoundComponent];
 const PUBLIC_DIRECTIVES: never[] = [];
@@ -19,13 +20,18 @@ const PUBLIC_PIPES= [SearchFilterPipe, PriceRangePipe, TagFilterPipe];
   ],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    ReactiveFormsModule,
+    FormsModule,
   ],
   exports: [
     ...PUBLIC_COMPONENTS,
     ...PUBLIC_DIRECTIVES,
     ...PUBLIC_PIPES,
     RouterModule,
+    CommonModule,
+    ReactiveFormsModule,
+    FormsModule,
   ],
 })
 export class SharedModule { }

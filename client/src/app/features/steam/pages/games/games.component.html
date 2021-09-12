@@ -19,8 +19,8 @@
   <h2>Featured games</h2>
   <div class="games-container" *ngIf="games$ | async as games">
     <ng-container *ngIf="(games
-      | priceRange: minPrice : maxVal : getPrice
-      | tagFilter: selectedTagsArray : getTagsArray
+      | priceRange: minPrice : maxVal
+      | tagFilter: selectedTagsArray
       | searchFilter: searchGame : getName) as result">
         <div class="game-item" *ngFor="let game of result">
           <steam-game-item [gameItem]="game"></steam-game-item>

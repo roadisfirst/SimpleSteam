@@ -16,5 +16,4 @@ export class SearchFilterPipe implements PipeTransform {
         getProperty(item).toLowerCase().includes(query);
     });
   }
-
 }

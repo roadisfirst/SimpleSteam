@@ -23,6 +23,8 @@ export class GameItemResolver implements Resolve<any> {
         catchError((e) => {
           this.router.navigateByUrl('**');
           return of({game: null, error: e.message});
-        }));
+        })
+      );
   }
+
 }
