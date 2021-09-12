@@ -1,0 +1,14 @@
+language: node_js
+node_js:
+- '14.17.1'
+before_install:
+- npm install -g @angular/cli
+install: npm install
+branches:
+  only:
+  - master
+deploy:
+  provider: heroku
+  app: simplesteam
+  api_key:
+    secure: lFNA59mOamoUw7mod9RtOM7r+0ENXXNj96WmV26zkiQb8XIvD5i5OMUDRj0V6+Syb0VRzC3p/Yxt3U17FRNnjszkGtJp6mjkM1As6tKlFbNrw4RDf48AQuynzbWhhjtID643k6GWLvQlAm4AZfbhv735XKQUI9QUukn/Hj1a6cEp7p/gVZK55+1vD1V6Z0uSQhclmWqWwH3SlOIo1MHa6lZyKDJTnDkWBiIfnfEfyKsiQ5aFqKlkXhIiIcF9yHj6+uuFcb1wSn+V/lZ7dfXZk6xGC1r+h6qXCLwGTBX+g5/5SLxRugMlqPxXMbyX3ytuHMFtjGaafqoQKvRRVjGIEbFjdrSj3CLRJGVJeJksvFKGsO/10+UN7ece5218SptrKhXuHf4GLDwMYDEwW3DYDoTKXRWs4l0c22wsCBMKM1IrUtdxIknNccEdN+wNu3pGs93Y8NY50P3aRfagfGwEZ6sKnWMFBr0AKJdzYs26yjo9pXctdqLGr8BGVPjIlx2j3pUyTO+OGHq2fGxi+FnU8s6KmMMbMQ+n4MvNWx6qRRaveAqq1a1rYJqVsOMQrAv8ja9dm871uT1ipN3lBddy90iuPGJHXIK4+YaH0TyVFW40ffnamynQ2X/7vzZvrV94WGJ/tZbrVKMCzvuuq5090SarWkRcZo61HyEbc3Rt4yI=

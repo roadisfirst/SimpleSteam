@@ -1,0 +1,13 @@
+<div class="content">
+  <h2 class="library-header">Library</h2>
+  <div class="games-container" *ngIf="library$ | async as library">
+    <div class="game-item" *ngFor="let item of library">
+      <steam-game-item [gameItem]="item"></steam-game-item>
+      <button type="button" (click)="download(item._id)">Download</button>
+      <button type="button" (click)="share(item._id)">Share</button>
+    </div>
+    <div *ngIf="!library.length">
+      Add games to your library
+    </div>
+  </div>
+</div>
