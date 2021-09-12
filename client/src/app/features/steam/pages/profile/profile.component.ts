@@ -13,7 +13,7 @@ export class ProfileComponent implements OnInit {
   public profileForm: FormGroup;
   public user: User;
   public constructor(
-    private profileService: ProfileService,
+    private readonly profileService: ProfileService,
     private readonly activatedRoute: ActivatedRoute,
     ) { }
 
@@ -50,4 +50,5 @@ export class ProfileComponent implements OnInit {
       ]),
     });
   }
+
 }

@@ -5,7 +5,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class SearchFilterPipe implements PipeTransform {
 
-  transform(value: any[], input: string, getProperty: (item: any) => string): any[] | null {
+  public transform(value: any[], input: string, getProperty: (item: any) => string): any[] | null {
     if (!value) return null;
     if (!input) return value;
 
@@ -16,5 +16,4 @@ export class SearchFilterPipe implements PipeTransform {
         getProperty(item).toLowerCase().includes(query);
     });
   }
-
 }

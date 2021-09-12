@@ -7,7 +7,7 @@ import { TokenStorageService } from 'src/app/core/services/token-storage.service
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
-  logoSrc = 'assets/images/logo.png';
+  public logoSrc = 'assets/images/logo.png';
   public isLoggedIn = false;
   constructor(
     private tokenStorage: TokenStorageService

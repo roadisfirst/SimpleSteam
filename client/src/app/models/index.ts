@@ -30,9 +30,9 @@ export interface Tag {
 }
 
 export enum InviteStatus {
-  PENDING = 'PENDING',
-  ACCEPTED = 'ACCEPTED',
-  REJECTED = 'REJECTED'
+  Pending = 'PENDING',
+  Accepted = 'ACCEPTED',
+  Rejected = 'REJECTED'
 }
 
 export interface Invite {

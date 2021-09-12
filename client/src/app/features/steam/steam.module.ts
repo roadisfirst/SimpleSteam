@@ -20,11 +20,8 @@ import { GameItemComponent } from './pages/game-item/game-item.component';
     GameItemComponent,
   ],
   imports: [
-    CommonModule,
-    ReactiveFormsModule,
     SteamRoutingModule,
     SharedModule,
-    FormsModule
   ]
 })
 export class SteamModule { }

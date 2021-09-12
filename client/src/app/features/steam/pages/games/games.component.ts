@@ -18,25 +18,21 @@ export class GamesComponent implements OnInit {
   public minPrice = 0;
   public maxPrice: number;
   public maxVal = 0;
-  public triggerTagChanges: boolean | undefined;
   constructor(
     private readonly gamesService: GamesService,
     private readonly libraryService: LibraryService
-  ) { }
-
-  public ngOnInit(): void {
+  ) { 
     this.games$ = this.gamesService.fetchGames();
     this.tags$ = this.gamesService.fetchGameTags();
+  }
+
+  public ngOnInit(): void {
     this.loadLibrary();
     this.setMaxPrice();
     this.maxVal = this.maxPrice;
   }
 
   public getName: (game: Game) => string = (game) => game.name;
-
-  public getPrice: (game: Game) => string = (game) => game.price;
-
-  public getTagsArray: (game: Game) => string[] = (game) => game.tags;
 
   public addToLibrary(gameId: string): void {
     this.libraryService.addGameToUserLibrary(gameId).subscribe(
@@ -77,11 +73,12 @@ export class GamesComponent implements OnInit {
     });
   }
 
-  public updateTagArray(item: Tag): void {
-    if(item.selected === false){
-      this.selectedTagsArray.splice(this.selectedTagsArray.indexOf(item.name), 1);
+  public updateTagArray(e: any, item: Tag): void {
+    if(e.target.checked){
+      this.selectedTagsArray = [...this.selectedTagsArray, item.name];
     } else {
-        this.selectedTagsArray.push(item.name);
-      }
+      this.selectedTagsArray = this.selectedTagsArray.filter(elem => elem !== item.name);
+    }
   }
+
 }
