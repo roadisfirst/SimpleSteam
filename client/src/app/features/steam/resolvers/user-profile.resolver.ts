@@ -19,3 +19,5 @@ export class UserProfileResolver implements Resolve<User> {
   }
 
 }
+
+// changes enulation
